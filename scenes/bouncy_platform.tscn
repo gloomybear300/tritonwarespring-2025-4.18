@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0cp73sv325gb"]
+
+[ext_resource type="Script" uid="uid://do3mgwttkcp2v" path="res://scripts/bouncy_platform.gd" id="1_w6iv5"]
+[ext_resource type="Texture2D" uid="uid://ixtiampvmkpx" path="res://assets/platforms/green_platform.PNG" id="2_sogjj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plpgg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjf8w"]
+size = Vector2(21.2239, 20.6765)
+
+[node name="bouncy_platform" type="StaticBody2D"]
+script = ExtResource("1_w6iv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3, -54)
+scale = Vector2(0.865, 0.865)
+texture = ExtResource("2_sogjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(7.80676, 1.72534)
+shape = SubResource("RectangleShape2D_plpgg")
+
+[node name="playerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
+position = Vector2(-2.49999, 0.696972)
+scale = Vector2(8.24541, -2.06061)
+shape = SubResource("RectangleShape2D_rjf8w")
+
+[connection signal="body_entered" from="playerDetector" to="." method="_on_player_detector_body_entered"]

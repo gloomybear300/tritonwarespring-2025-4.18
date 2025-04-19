@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk3rfhmxv7bho"]
+
+[ext_resource type="Script" uid="uid://6u5eunpr5wa5" path="res://scripts/skins.gd" id="1_5xf5c"]
+[ext_resource type="PackedScene" uid="uid://p61jhmuj8una" path="res://scenes/rope.tscn" id="2_uptfv"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5xf5c")
+rope = ExtResource("2_uptfv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = 98.0
+offset_right = 23.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Use" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Use"
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="right" type="Button" parent="."]
+layout_mode = 2
+offset_left = 700.0
+offset_top = 270.0
+offset_right = 745.0
+offset_bottom = 310.0
+text = "right"
+
+[node name="left" type="Button" parent="."]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 268.0
+offset_right = 436.0
+offset_bottom = 308.0
+text = "left"
+
+[node name="ropeLineDisplay" type="Line2D" parent="."]
+position = Vector2(562, 268)
+scale = Vector2(1.00317, 0.996743)
+
+[node name="Text" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 44.0
+offset_right = 100.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Text"]
+layout_mode = 2
+text = "default"
+horizontal_alignment = 1
+
+[node name="Needed" type="Label" parent="Text"]
+layout_mode = 2
+text = "Need: "
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="left" to="." method="_on_left_pressed"]

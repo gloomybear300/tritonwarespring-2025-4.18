@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhn1ogv2spim1"]
+
+[ext_resource type="Texture2D" uid="uid://dr8xg13igwx1" path="res://temp_art/icon.svg" id="1_d1ds6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lpnoa"]
+radius = 2.23607
+
+[node name="rope end piece" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="C" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lpnoa")
+
+[node name="J" type="PinJoint2D" parent="C"]
+bias = 0.2
+softness = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_d1ds6")

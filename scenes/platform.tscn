@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnpiwi05wo2d3"]
+
+[ext_resource type="Script" uid="uid://bhgh6yet5k4sv" path="res://scripts/platform.gd" id="1_g6n58"]
+[ext_resource type="Texture2D" uid="uid://ce63cef8jku0t" path="res://assets/platforms/blue_platform.PNG" id="2_r8v6l"]
+[ext_resource type="Texture2D" uid="uid://b135iuxvmnupa" path="res://assets/platforms/blue_platform_bluead.PNG" id="3_pvkk7"]
+[ext_resource type="Texture2D" uid="uid://ck48kkoge61fr" path="res://assets/platforms/blue_platform_greenad.PNG" id="4_1oqhx"]
+[ext_resource type="Texture2D" uid="uid://bktvviuqxsbe6" path="res://assets/platforms/multi_platform.PNG" id="5_u5530"]
+[ext_resource type="Texture2D" uid="uid://bl702eb6pjpyp" path="res://assets/platforms/multi_platform_bluead.PNG" id="6_apxtv"]
+[ext_resource type="Texture2D" uid="uid://beq6gdkn6be1k" path="res://assets/platforms/multi_platform_greenad.PNG" id="7_ba144"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1sqh"]
+size = Vector2(20, 19.5986)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dt14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r8v6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pvkk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1oqhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_u5530")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_apxtv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ba144")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Platform" type="StaticBody2D" groups=["ground"]]
+script = ExtResource("1_g6n58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.397248)
+scale = Vector2(8.47077, 1.97945)
+shape = SubResource("RectangleShape2D_s1sqh")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -59)
+scale = Vector2(0.865, 0.865)
+sprite_frames = SubResource("SpriteFrames_6dt14")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -47)
+collide_with_areas = true

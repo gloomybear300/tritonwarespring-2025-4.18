@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://oulsfxy7ocs3"]
+
+[ext_resource type="Script" uid="uid://i6s6y7mc12d0" path="res://scripts/temporary_platform.gd" id="1_c37ya"]
+[ext_resource type="Texture2D" uid="uid://ctwujxlrpxh4g" path="res://assets/platforms/red_platform.PNG" id="2_6trwr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22f0g"]
+size = Vector2(17.6674, 26.5051)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0v8k6"]
+size = Vector2(273, 81)
+
+[node name="Temporary_Platform" type="StaticBody2D"]
+script = ExtResource("1_c37ya")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2, -86)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_6trwr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0.972973, 0, 0.304235, 1)
+position = Vector2(-2.5, 6.8972)
+scale = Vector2(15.4522, 2.12056)
+shape = SubResource("RectangleShape2D_22f0g")
+
+[node name="playerDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
+position = Vector2(-1.5, -30.5)
+shape = SubResource("RectangleShape2D_0v8k6")
+
+[connection signal="body_exited" from="playerDetector" to="." method="_on_player_detector_body_exited"]

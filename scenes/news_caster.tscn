@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://btqx8kuiqn3jt"]
+
+[ext_resource type="Script" uid="uid://cem167jywl185" path="res://scripts/news_caster.gd" id="1_2ffay"]
+[ext_resource type="Texture2D" uid="uid://cea7igut13dai" path="res://assets/news_caster/tv_caster_blink.png" id="1_l1xq6"]
+[ext_resource type="Texture2D" uid="uid://bytb6rh8le4r4" path="res://assets/news_caster/tv_caster_closed.png" id="2_2ffay"]
+[ext_resource type="Shader" uid="uid://cid7nm4n5q1sc" path="res://scripts/news_caster.gdshader" id="2_nel2u"]
+[ext_resource type="Texture2D" uid="uid://dubfik6pj43v3" path="res://assets/news_caster/tv_caster_open.png" id="3_wb0ij"]
+[ext_resource type="Texture2D" uid="uid://4m3fjgef8nge" path="res://assets/news_caster/liveIcon (1).png" id="5_wb0ij"]
+[ext_resource type="Texture2D" uid="uid://o0vkshxi1bf7" path="res://assets/news_caster/newsFrame.png" id="7_lmc3w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcyuw"]
+shader = ExtResource("2_nel2u")
+shader_parameter/time_speed = 1.0
+shader_parameter/scanline_strength = 0.1
+shader_parameter/distortion_strength = 0.005
+shader_parameter/chroma_offset = 0.002
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nel2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l1xq6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2ffay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wb0ij")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="newsCaster" type="Node2D"]
+script = ExtResource("1_2ffay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.965349, 0.946947, 0.991813, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_lcyuw")
+position = Vector2(1035, 143)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_nel2u")
+frame = 1
+frame_progress = 0.658152
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(76, 609)
+scale = Vector2(2, 2)
+texture = ExtResource("5_wb0ij")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1039, 142)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("7_lmc3w")

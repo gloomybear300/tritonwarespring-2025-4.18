@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://ctxnelpw4al07"]
+
+[ext_resource type="Script" uid="uid://cwwcwbh4f6mhl" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://c7x6dpp030cyv" path="res://scenes/player.tscn" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://be3eswngom4pu" path="res://scripts/platformer_spawner.gd" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://oulsfxy7ocs3" path="res://scenes/temporary_platform.tscn" id="4_bdjrj"]
+[ext_resource type="Texture2D" uid="uid://dr8xg13igwx1" path="res://art/icon.svg" id="5_25vkc"]
+[ext_resource type="Shader" uid="uid://t0k3sttbxotc" path="res://scenes/game.gdshader" id="6_p57ef"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fmxm6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lbhrr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5sy4"]
+shader = ExtResource("6_p57ef")
+shader_parameter/softness = 0.0
+shader_parameter/intensity = 1.0
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_lnu2h")
+
+[node name="player" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(534, 373)
+
+[node name="World Bounds" type="StaticBody2D" parent="."]
+
+[node name="bottom" type="CollisionShape2D" parent="World Bounds"]
+position = Vector2(568, 644)
+shape = SubResource("WorldBoundaryShape2D_fmxm6")
+
+[node name="left" type="CollisionShape2D" parent="World Bounds"]
+position = Vector2(0, 334)
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="right" type="CollisionShape2D" parent="World Bounds"]
+position = Vector2(1153, -2)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_lbhrr")
+
+[node name="Platformer Spawner" type="Node" parent="."]
+script = ExtResource("2_lnu2h")
+
+[node name="point" type="Marker2D" parent="Platformer Spawner"]
+position = Vector2(1228, 277)
+
+[node name="Temporary_Platform" parent="Platformer Spawner" instance=ExtResource("4_bdjrj")]
+position = Vector2(538, 448)
+
+[node name="blackBox" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+position = Vector2(201, 516)
+scale = Vector2(-11.3541, 5.90938)
+texture = ExtResource("5_25vkc")
+
+[node name="VignetteRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_u5sy4")
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.84, 16.16)
+color = Color(1, 1, 1, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 44.0
+offset_top = 43.0
+offset_right = 192.0
+offset_bottom = 66.0
+scale = Vector2(0.981273, 1)
+text = "shift escape to quit"
+
+[node name="ScoreLabel" type="Label" parent="."]
+visible = false
+offset_left = 55.0
+offset_top = 94.0
+offset_right = 108.0
+offset_bottom = 117.0
+
+[connection signal="game_start" from="Platformer Spawner/Temporary_Platform" to="." method="_on_temporary_platform_game_start"]

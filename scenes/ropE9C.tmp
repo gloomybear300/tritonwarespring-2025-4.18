@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://p61jhmuj8una"]
+
+[ext_resource type="Script" path="res://scripts/rope.gd" id="1_shytd"]
+[ext_resource type="PackedScene" uid="uid://dhn1ogv2spim1" path="res://scenes/rope_end_piece.tscn" id="2_vdy68"]
+
+[node name="rope" type="Node"]
+script = ExtResource("1_shytd")
+
+[node name="start piece" parent="." instance=ExtResource("2_vdy68")]
+position = Vector2(614, -3)
+
+[node name="end piece" parent="." instance=ExtResource("2_vdy68")]
+position = Vector2(605, 148)
